@@ -194,8 +194,7 @@ BINARYNINJAPLUGIN void CorePluginDependencies() {
 
 BINARYNINJAPLUGIN bool CorePluginInit() {
   // binja uses both arm64 and aarch64, so we just pick one and use it
-  Architecture *a53 =
-      new arm64Intrinsics(Architecture::GetByName("aarch64"));
+  Architecture *a53 = new arm64Intrinsics(Architecture::GetByName("aarch64"));
   Architecture::Register(a53);
   return true;
 }
