@@ -17,23 +17,20 @@ LDFLAGS = /nologo /DLL /debug:full
 
 LIBS = /L$(BINJAPATH) /lbinaryninjacore
 
-TARGET = a53.dll
+TARGET = a57.dll
 
 all: $(TARGET)
 
-src/msr.h: msr.py
-	python msr.py
-	clang-format -i src/msr.h || cd .
-
-src/a53.cpp.obj: src/a53.cpp src/msr.h
+src/a57.cpp.obj: src/a57.cpp
 	$(CC) $(CFLAGS) $(INC) /c /Fo$@ $**
 
-$(TARGET): src/a53.cpp.obj
+$(TARGET): src/a57.cpp.obj
 	$(LD) $(LDFLAGS) $(BINJACORE) $(BINJA_API_A) $** /out:$@
 
 .PHONY: fmt
 fmt:
-	clang-format -i src/a53.cpp
+	clang-format -i src/a57.cpp
+	clang-format -i src/msr.h
 
 install: $(TARGET)
 	copy $(TARGET) $(PLUGIN_DIR)
@@ -44,9 +41,8 @@ uninstall:
 .PHONY: clean
 clean:
 	-del src\*.obj
-	-del src\msr.h
-	-del a53.dll
-	-del a53.lib
+	-del a57.dll
+	-del a57.lib
 	-del *.pdb
 	-del *.exp
 	-del *.ilk
