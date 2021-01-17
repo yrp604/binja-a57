@@ -1,6 +1,17 @@
 #include <map>
 using namespace std;
 
+/*
+ * Map of system register id to name, id can be computed with
+ * def r(o0, o1, cn, cm, o2):
+ *   return o0 << 14 | o1 << 11 | cn << 7 | cm << 3 | o2 << 0
+ *
+ * so for example, s3_3_c0_c0_7 (DCZID_EL0) would be
+ * 3 << 14 | 3 << 11 | 0 << 7 | 0 << 3 | 7
+ *
+ * or 0xd807.
+ */
+
 map<uint32_t, const char *> msr = {
     {0xc000, "MIDR_EL1"},        {0xc800, "CCSIDR_EL1"},
     {0xc005, "MPIDR_EL1"},       {0xc020, "ID_AA64PFR0_EL1"},
