@@ -187,6 +187,8 @@ public:
 };
 
 extern "C" {
+BN_DECLARE_CORE_ABI_VERSION
+
 BINARYNINJAPLUGIN void CorePluginDependencies() {
   // Make sure we load after the original arm64 plugin loads
   AddRequiredPluginDependency("arch_arm64");

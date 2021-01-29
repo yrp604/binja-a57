@@ -1,6 +1,9 @@
 #include <map>
 using namespace std;
 
+#define SR(o0, o1, cm, cn, o2)                                                 \
+  ((o0) << 14 | (o1) << 11 | (cm) << 7 | (cn) << 3 | (o2))
+
 /*
  * Map of system register id to name, id can be computed with
  * def r(o0, o1, cn, cm, o2):
@@ -20,5 +23,5 @@ map<uint32_t, const char *> msr = {
     {0xcf90, "CPUACTLR_EL1"},    {0xcf91, "CPUECTLR_EL1"},
     {0xd801, "CTR_EL0"},         {0xd807, "DCZID_EL0"},
     {0xdf01, "CNTPCT_EL0"},      {0xe090, "ZCR_EL2"},
-    {0xf090, "ZCR_EL3"},
+    {0xf090, "ZCR_EL3"},         {SR(3, 3, 14, 0, 2), "CNTVCT"},
 };
