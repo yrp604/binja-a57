@@ -12,8 +12,8 @@ using namespace std;
 #include "msr.h"
 
 // stolen from il.h
-constexpr uint32_t MSR = 20;
-constexpr uint32_t MRS = 19;
+constexpr uint32_t MRS = 20;
+constexpr uint32_t MSR = 21;
 
 // Base for our MSRs
 constexpr uint32_t MSR_BASE = 0x4200;
