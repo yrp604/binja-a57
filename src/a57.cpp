@@ -18,7 +18,7 @@ constexpr uint32_t MSR = 21;
 // Base for our MSRs
 constexpr uint32_t MSR_BASE = 0x4200;
 
-class arm64Intrinsics : public ArchitectureHook {
+class a57: public ArchitectureHook {
 private:
   constexpr uint8_t SrOp0(uint32_t ins) { return ((ins >> 19) & 0b1) + 2; }
 
@@ -81,7 +81,7 @@ private:
   }
 
 public:
-  arm64Intrinsics(Architecture *arm64) : ArchitectureHook(arm64) {}
+  a57(Architecture *arm64) : ArchitectureHook(arm64) {}
 
   /*
    * First we need to add all the status registers as registers to the
@@ -196,8 +196,8 @@ BINARYNINJAPLUGIN void CorePluginDependencies() {
 
 BINARYNINJAPLUGIN bool CorePluginInit() {
   // binja uses both arm64 and aarch64, so we just pick one and use it
-  Architecture *a53 = new arm64Intrinsics(Architecture::GetByName("aarch64"));
-  Architecture::Register(a53);
+  Architecture *a57_hook = new a57(Architecture::GetByName("aarch64"));
+  Architecture::Register(a57_hook);
   return true;
 }
 }
